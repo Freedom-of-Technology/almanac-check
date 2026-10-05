@@ -68,4 +68,8 @@ Cloudflare Pages project `almanac-check`, connected to this repo: no build comma
 is a custom domain on that project; its DNS record is written down in FreeOT's almanac
 (`dns/freeot.com.zone`).
 
-Code is under the MIT license (`LICENSE`). The fonts in `site/brand/fonts/` are under the SIL Open Font License (`OFL.txt` beside each), and the FreeOT name and logo are FreeOT's and aren't covered by the MIT license.
+## License
+
+The code is under the MIT license (`LICENSE`). The fonts in `site/brand/fonts/` are under the SIL
+Open Font License (`OFL.txt` beside each). The FreeOT name and logo belong to FreeOT and aren't
+covered by the MIT license.

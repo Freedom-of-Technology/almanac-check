@@ -100,7 +100,7 @@ label.fo-btn { cursor: pointer; }
 }
 .problem p { margin: 0; max-width: 46em; }
 .problem-head { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
-.problem-title { margin: 0; font-family: var(--font-headings); font-size: var(--size-heading-3); letter-spacing: var(--heading-tracking); line-height: 1.2; overflow-wrap: anywhere; }
+.problem-title { margin: 0; font-family: var(--font-headings); font-size: var(--size-heading-3); letter-spacing: var(--heading-tracking); line-height: 1.2; overflow-wrap: break-word; }
 .note { font-size: var(--size-label); }
 
 .compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
@@ -136,7 +136,7 @@ label.fo-btn { cursor: pointer; }
 
 .records { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--line); font-size: 16px; }
 .records th { text-align: left; font-size: var(--size-label); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--label); padding: 12px 14px; border-bottom: 1px solid var(--line); }
-.records td { padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; overflow-wrap: anywhere; }
+.records td { padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; overflow-wrap: break-word; }
 .records td code { display: block; }
 .records td code + code { margin-top: 4px; }
 .records td:first-child { width: 1%; white-space: nowrap; }
