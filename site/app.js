@@ -38,6 +38,16 @@ const LABELS = {
 const GUIDE_CHANGED = 'A record was changed or deleted';
 const GUIDE_RESTORE = 'Putting everything back';
 
+// A domain name that may break onto the next line after a dot, never in the middle of a word.
+function domainName(name) {
+  const span = h('span', { class: 'domain' });
+  name.split('.').forEach((part, i) => {
+    if (i) span.append('.', document.createElement('wbr'));
+    span.append(part);
+  });
+  return span;
+}
+
 function badge(status) {
   return h('span', { class: `badge badge-${status}` }, LABELS[status]);
 }
@@ -142,19 +152,19 @@ function renderResult(fileName, report, again) {
   if (NEEDS_A_LOOK.has(report.nameservers.status)) problems.push(problemCard('Which DNS company runs your domain', report.nameservers.status, explainNameservers(report.nameservers)));
   if (NEEDS_A_LOOK.has(report.dnssec.status)) problems.push(problemCard('DNSSEC', report.dnssec.status, explainDnssec(report.dnssec)));
   for (const row of report.rows.filter((r) => NEEDS_A_LOOK.has(r.status))) {
-    problems.push(problemCard(`${row.type} record for ${row.name}`, row.status, explainRecord(row)));
+    problems.push(problemCard([`${row.type} record for `, domainName(row.name)], row.status, explainRecord(row)));
   }
   if (problems.length) section.append(h('h3', { class: 'fo-h3' }, 'Needs a look'), h('div', { class: 'problems' }, problems));
 
   // Then every record, so the owner can see each one was looked at.
   const nsRow = h('tr', {},
     h('td', { 'data-label': 'Status' }, badge(report.nameservers.status)),
-    h('td', { 'data-label': 'Name' }, report.domain),
+    h('td', { 'data-label': 'Name' }, domainName(report.domain)),
     h('td', { 'data-label': 'Type' }, 'Name servers'),
     h('td', { 'data-label': 'Value' }, report.nameservers.file.length ? report.nameservers.file.join(', ') : h('span', { class: 'value-none' }, '(not in your file)')));
   const rows = report.rows.map((row) => h('tr', {},
     h('td', { 'data-label': 'Status' }, badge(row.status)),
-    h('td', { 'data-label': 'Name' }, row.name, row.godaddyExtra ? h('span', { class: 'tag' }, 'GoDaddy added this') : null),
+    h('td', { 'data-label': 'Name' }, domainName(row.name), row.godaddyExtra ? h('span', { class: 'tag' }, 'GoDaddy added this') : null),
     h('td', { 'data-label': 'Type' }, row.type),
     h('td', { 'data-label': 'Value' }, row.file.length ? row.file.map((v) => h('code', {}, v)) : h('span', { class: 'value-none' }, '(GoDaddy website)'))));
   section.append(
