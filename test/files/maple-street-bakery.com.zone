@@ -1,0 +1,28 @@
+; Records file for maple-street-bakery.com (made up, for tests)
+;
+;   nameservers: ada.ns.cloudflare.com bob.ns.cloudflare.com
+;   DNSSEC:              off
+
+$ORIGIN maple-street-bakery.com.
+$TTL 300
+
+; ---- The website ------------------------------------------------------------------------------
+; Our website, behind Cloudflare.
+@                   1     IN  A      192.0.2.10              ; cf_tags=cf-proxied:true
+www                 1     IN  CNAME  maple-street-bakery.com. ; cf_tags=cf-proxied:true
+
+; ---- Email ------------------------------------------------------------------------------------
+; Where incoming email goes.
+@                   300   IN  MX     1  aspmx.l.google.com.
+@                   300   IN  MX     5  alt1.aspmx.l.google.com.
+
+; Who is allowed to send email as this domain.
+@                   300   IN  TXT    "v=spf1 include:_spf.google.com ~all"
+
+; Google's signature on our email.
+; paste: v=DKIM1; k=rsa; p=MAPLEaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaBREADbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbSCONEcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+google._domainkey   300   IN  TXT    ( "v=DKIM1; k=rsa; p=MAPLEaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaBREADbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                                       "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbSCONEcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" )
+
+; What to do with fake email pretending to be from us.
+_dmarc              300   IN  TXT    "v=DMARC1; p=none; rua=mailto:owner@maple-street-bakery.com"

@@ -1,0 +1,17 @@
+/* FreeOT fonts, copied from FreeOT's brand kit (fonts/). Both are free under the SIL Open Font
+   License (OFL.txt beside each). Only the upright styles: this page uses no italics. */
+
+@font-face {
+  font-family: "Familjen Grotesk";
+  src: url("fonts/familjen-grotesk/FamiljenGrotesk-Variable.ttf") format("truetype");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Figtree";
+  src: url("fonts/figtree/Figtree-Variable.ttf") format("truetype");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}

@@ -1,0 +1,37 @@
+; Domain: harbor-light-cafe.com
+; Exported (y-m-d hh:mm:ss): 2026-10-01 09:00:00
+;
+; Made up, for tests, in the shape of GoDaddy's "Export Zone File".
+;
+; Use at your own risk.
+
+
+$ORIGIN harbor-light-cafe.com.
+
+; SOA Record
+@	3600	 IN 	SOA	ns11.domaincontrol.com.	dns.jomax.net. (
+					2026100100
+					28800
+					7200
+					604800
+					3600
+					)
+
+; A Record
+@	3600	 IN 	A	WebsiteBuilder Site
+
+; CNAME Record
+www	3600	 IN 	CNAME	@
+_domainconnect	3600	 IN 	CNAME	_domainconnect.gd.domaincontrol.com.
+
+; MX Record
+@	3600	 IN 	MX	10	mx1.harbor-light-cafe-mail.example.
+@	3600	 IN 	MX	20	mx2.harbor-light-cafe-mail.example.
+
+; NS Record
+@	3600	 IN 	NS	ns11.domaincontrol.com.
+@	3600	 IN 	NS	ns12.domaincontrol.com.
+
+; TXT Record
+@	3600	 IN 	TXT	"v=spf1 include:dc-1a2b3c4d5e._spfm.harbor-light-cafe.com ~all"
+dc-1a2b3c4d5e._spfm	3600	 IN 	TXT	"v=spf1 include:harbor-light-cafe-mail.example ~all"

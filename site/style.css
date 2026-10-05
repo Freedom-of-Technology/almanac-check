@@ -1,0 +1,164 @@
+/* Almanac Check's own layout, on FreeOT's color and font settings (brand/colors.css) and
+   pieces (brand/pieces.css). Statuses are always spelled out in words, never color alone. */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--text);
+  font-family: var(--font-text);
+  font-size: var(--size-paragraph);
+  line-height: 1.55;
+  font-variant-numeric: tabular-nums;
+}
+
+main, .top, .bottom {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding-left: var(--space-side-phone);
+  padding-right: var(--space-side-phone);
+}
+@media (min-width: 768px) {
+  main, .top, .bottom { padding-left: 40px; padding-right: 40px; }
+}
+
+.top { padding-top: 24px; padding-bottom: 8px; }
+.top-logo { display: inline-block; }
+.top-logo img { display: block; height: 52px; width: auto; }
+
+code {
+  font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  font-size: 0.875em;
+  overflow-wrap: anywhere;
+}
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ---- Intro and the drop box ---- */
+
+.intro { padding: 32px 0 28px; display: flex; flex-direction: column; gap: 14px; }
+.intro .fo-p { color: var(--text); }
+
+.drop {
+  background: var(--band);
+  border: 2px dashed var(--line);
+  border-radius: var(--panel-corner);
+  padding: var(--space-card);
+  display: flex; flex-direction: column; gap: 16px;
+}
+.drop .fo-p { color: var(--text); }
+.drop.dragging { border-color: var(--link); border-style: solid; }
+label.fo-btn { cursor: pointer; }
+#file:focus-visible + .fo-btn, label.fo-btn:has(+ #file:focus-visible) { outline: 2px solid var(--link); outline-offset: 2px; }
+
+.paste { display: flex; flex-direction: column; gap: 10px; }
+.paste[hidden] { display: none; }
+.paste textarea {
+  width: 100%;
+  font: 14px/1.5 ui-monospace, "Cascadia Mono", Consolas, monospace;
+  color: var(--text);
+  background: var(--panel);
+  border: 1px solid var(--label);
+  border-radius: var(--button-corner);
+  padding: 12px;
+  resize: vertical;
+}
+.paste textarea:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+
+.privacy { margin: 0; font-size: var(--size-label); line-height: 1.5; color: var(--text); max-width: 46em; }
+
+/* ---- Results ---- */
+
+#results { padding: 8px 0 24px; }
+.checking { font-weight: 600; padding: 24px 0; margin: 0; }
+
+.result {
+  margin-top: 32px;
+  padding-top: 28px;
+  border-top: 4px solid var(--accent);
+  display: flex; flex-direction: column; gap: 18px;
+}
+.result h3 { margin-top: 12px; }
+.result-head { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: flex-start; }
+.result-head p { margin: 0; }
+.summary { font-size: var(--size-heading-3); font-weight: 600; margin-top: 8px !important; }
+.hint { color: var(--text); font-size: var(--size-label); }
+.result-message p { margin: 0; }
+
+.problems { display: flex; flex-direction: column; gap: var(--space-gap); }
+.problem {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-left: 6px solid var(--accent);
+  border-radius: var(--panel-corner);
+  padding: 20px var(--space-card);
+  display: flex; flex-direction: column; gap: 12px;
+}
+.problem p { margin: 0; max-width: 46em; }
+.problem-head { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.problem-title { margin: 0; font-family: var(--font-headings); font-size: var(--size-heading-3); letter-spacing: var(--heading-tracking); line-height: 1.2; overflow-wrap: anywhere; }
+.note { font-size: var(--size-label); }
+
+.compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.compare .fo-label { margin-bottom: 4px; }
+.values { margin: 0; padding-left: 1.1em; }
+.values li + li { margin-top: 4px; }
+.value-none { color: var(--text); font-style: normal; margin: 0; }
+
+/* Status words. Problems are filled; everything else is outlined. */
+.badge {
+  display: inline-block;
+  font-size: var(--size-label);
+  font-weight: 700;
+  line-height: 1.3;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 2px solid var(--line);
+  color: var(--text);
+  white-space: nowrap;
+}
+.badge-different, .badge-missing, .badge-paste, .badge-failed {
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--page);
+}
+.tag {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: var(--size-label);
+  font-weight: 600;
+  color: var(--label);
+}
+
+.records { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--line); font-size: 16px; }
+.records th { text-align: left; font-size: var(--size-label); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--label); padding: 12px 14px; border-bottom: 1px solid var(--line); }
+.records td { padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; overflow-wrap: anywhere; }
+.records td code { display: block; }
+.records td code + code { margin-top: 4px; }
+.records td:first-child { width: 1%; white-space: nowrap; }
+
+/* On phones each record becomes a small card, with its labels written out. */
+@media (max-width: 720px) {
+  .records thead { display: none; }
+  .records, .records tbody, .records tr, .records td { display: block; width: auto; }
+  .records tr { border-bottom: 1px solid var(--line); padding: 10px 14px; }
+  .records td { border: 0; padding: 4px 0; }
+  .records td:first-child { width: auto; }
+  .records td:not(:first-child)::before {
+    content: attr(data-label);
+    display: block;
+    font-size: var(--size-label);
+    font-weight: 600;
+    color: var(--label);
+  }
+}
+
+.key { display: flex; flex-direction: column; gap: 6px; font-size: var(--size-label); }
+.key p { margin: 0; max-width: 60em; }
+
+.bottom { padding-top: 24px; padding-bottom: 40px; font-size: var(--size-label); }
+.bottom p { margin: 0; border-top: 1px solid var(--line); padding-top: 16px; }

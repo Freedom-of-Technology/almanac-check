@@ -1,0 +1,92 @@
+/* FreeOT color and font settings. Built from colors.json by scripts/colors.py; edit that file, not this one. */
+
+:root {
+  --freeot-white: #FFFFFF;  /* White */
+  --freeot-night: #0E1A24;  /* Night */
+  --freeot-slate: #2B3945;  /* Slate */
+  --freeot-gray: #4A5A68;  /* Gray */
+  --freeot-river: #1F5F8B;  /* River */
+  --freeot-sky: #DCEBF5;  /* Sky */
+  --freeot-azure: #0091FF;  /* Azure */
+  --freeot-line: #D5E2EC;  /* Line */
+  --freeot-mist: #F3F6FA;  /* Mist */
+  --freeot-deep: #15242F;  /* Deep */
+  --freeot-deep-river: #17354D;  /* Deep river */
+  --freeot-pale-gray: #A9BCCB;  /* Pale gray */
+  --freeot-light-azure: #66BDFF;  /* Light azure */
+  --freeot-sky-fade: linear-gradient(to bottom right, var(--freeot-white), var(--freeot-sky));  /* Sky fade */
+
+  --page: var(--freeot-white);
+  --panel: var(--freeot-white);
+  --band: var(--freeot-sky);
+  --text: var(--freeot-night);
+  --text-soft: var(--freeot-slate);
+  --label: var(--freeot-gray);
+  --link: var(--freeot-river);
+  --button: var(--freeot-azure);
+  --on-button: var(--freeot-night);
+  --accent: var(--freeot-azure);
+  --line: var(--freeot-line);
+
+  --font-headings: "Familjen Grotesk", system-ui, sans-serif;
+  --font-text: "Figtree", system-ui, sans-serif;
+  --heading-tracking: -0.025em;
+  --size-heading-1: 40px;
+  --size-heading-2: 28px;
+  --size-heading-3: 22px;
+  --size-paragraph: 16px;
+  --size-button: 16px;
+  --size-label: 14px;
+  --size-numbers: 16px;
+  --panel-corner: 10px;
+  --button-corner: 8px;
+  --space-gap: 18px;
+  --space-card: 24px;
+  --space-side-phone: 22px;
+  --space-side: 56px;
+  --space-section: 72px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --size-heading-1: 62px;
+    --size-heading-2: 40px;
+    --size-heading-3: 24px;
+    --size-paragraph: 18px;
+    --size-button: 16px;
+    --size-label: 14px;
+    --size-numbers: 18px;
+  }
+}
+
+/* Dark screens: follows the device setting unless the page sets data-theme. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page: var(--freeot-night);
+    --panel: var(--freeot-deep);
+    --band: var(--freeot-deep-river);
+    --text: var(--freeot-mist);
+    --text-soft: var(--freeot-sky);
+    --label: var(--freeot-pale-gray);
+    --link: var(--freeot-light-azure);
+    --button: var(--freeot-azure);
+    --on-button: var(--freeot-night);
+    --accent: var(--freeot-azure);
+    --line: var(--freeot-slate);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: var(--freeot-night);
+  --panel: var(--freeot-deep);
+  --band: var(--freeot-deep-river);
+  --text: var(--freeot-mist);
+  --text-soft: var(--freeot-sky);
+  --label: var(--freeot-pale-gray);
+  --link: var(--freeot-light-azure);
+  --button: var(--freeot-azure);
+  --on-button: var(--freeot-night);
+  --accent: var(--freeot-azure);
+  --line: var(--freeot-slate);
+}

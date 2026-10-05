@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src https:; img-src 'self'; style-src 'self'; font-src 'self'; script-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <meta name="referrer" content="no-referrer">
+  <title>Almanac Check · FreeOT</title>
+  <meta name="description" content="Check your domain's records file against what's live on the internet. Your file stays on your computer.">
+  <link rel="icon" href="brand/logo/freeot-icon-32.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="brand/logo/freeot-app-icon.png">
+  <link rel="stylesheet" href="brand/fonts.css">
+  <link rel="stylesheet" href="brand/colors.css">
+  <link rel="stylesheet" href="brand/pieces.css">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <header class="top">
+    <a class="top-logo" href="https://freedomoftechnology.com" target="_blank" rel="noopener">
+      <picture>
+        <source srcset="brand/logo/freeot-logo-horizontal-reverse.svg" media="(prefers-color-scheme: dark)">
+        <img src="brand/logo/freeot-logo-horizontal.svg" alt="FreeOT" width="151" height="64">
+      </picture>
+    </a>
+  </header>
+
+  <main>
+    <section class="intro">
+      <p class="fo-eyebrow">Almanac Check</p>
+      <h1 class="fo-h1">Are your domain's records still right?</h1>
+      <p class="fo-p">Your almanac has a records file for each of your domains. Drop one here, and this
+        page compares every line with what the internet sees right now.</p>
+    </section>
+
+    <section class="drop" id="drop" aria-labelledby="drop-title">
+      <h2 class="fo-h3" id="drop-title">Your records file</h2>
+      <p class="fo-p">Drag the file onto this box, or choose it. It ends in <code>.zone</code>, or
+        <code>.txt</code> for a file saved from GoDaddy or Cloudflare.</p>
+      <div class="fo-row">
+        <label class="fo-btn" for="file">Choose a file</label>
+        <input id="file" type="file" accept=".zone,.txt,text/plain" multiple class="visually-hidden">
+        <button type="button" class="fo-btn fo-btn-outline" id="paste-open" aria-expanded="false" aria-controls="paste-box">Paste it instead</button>
+      </div>
+      <div id="paste-box" class="paste" hidden>
+        <label class="fo-label" for="paste">The file's text</label>
+        <textarea id="paste" rows="10" spellcheck="false" autocomplete="off"
+          placeholder="On GitHub, open the file, click the Copy raw file button, and paste here."></textarea>
+        <div class="fo-row"><button type="button" class="fo-btn" id="paste-check">Check it</button></div>
+      </div>
+      <p class="privacy"><strong>Your file stays on this computer.</strong> Nothing is uploaded. To check each
+        record, this page asks Google's public lookup service about the names in your file, and asks the
+        registry for your domain ending (such as .com) which DNS company runs your domain. Those are the
+        same public questions any web browser or email server asks.</p>
+    </section>
+
+    <div id="results" aria-live="polite"></div>
+  </main>
+
+  <footer class="bottom">
+    <p>Almanac Check is free, from <a class="fo-link" href="https://freedomoftechnology.com" target="_blank" rel="noopener">FreeOT</a>.
+      Its code is public on <a class="fo-link" href="https://github.com/Freedom-of-Technology/almanac-check" target="_blank" rel="noopener">GitHub</a>.</p>
+  </footer>
+</body>
+</html>

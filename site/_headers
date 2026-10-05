@@ -1,0 +1,8 @@
+# Added by Cloudflare Pages to every page. The page's own Content-Security-Policy (in index.html)
+# limits what it can load; these cover what a page can't set for itself.
+/*
+  Content-Security-Policy: frame-ancestors 'none'
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
