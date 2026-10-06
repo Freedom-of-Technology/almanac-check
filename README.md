@@ -68,6 +68,11 @@ Cloudflare Pages project `almanac-check`, connected to this repo: no build comma
 is a custom domain on that project; its DNS record is written down in FreeOT's almanac
 (`dns/freeot.com.zone`).
 
+Merges reach Cloudflare through its GitHub app, which sees only the repos picked for it: GitHub
+organization settings › GitHub Apps › Cloudflare Workers and Pages › Configure › Repository access
+must list `almanac-check`. If it doesn't, the Pages project says "This project is disconnected from
+your Git account" and merges stop going live, while the build settings still look connected.
+
 ## License
 
 The code is under the MIT license (`LICENSE`). The fonts in `site/brand/fonts/` are under the SIL
