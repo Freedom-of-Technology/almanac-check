@@ -47,7 +47,26 @@ split into two (`._spfm`).
 | `site/app.js` | The page: getting the file in, and saying what was found in plain words. |
 | `site/brand/` | FreeOT's color and font settings, fonts and logos, copied from FreeOT's brand kit. Update them by copying again. |
 | `site/_headers` | Security headers Cloudflare Pages adds to every page. |
-| `test/` | Tests. They run the code in `site/check/` on made-up records files, with a stand-in for the network. |
+| `cli/check.mjs` | The same check from the command line, for FreeOT and for GitHub's check on each almanac. It runs the code in `site/check/`. |
+| `test/` | Tests. They run the code in `site/check/` and `cli/` on made-up records files, with a stand-in for the network. |
+
+## From the command line
+
+For FreeOT, and for the check GitHub runs on each almanac. Business owners use the page. It needs
+Node 22 or later and nothing else, and runs the same checking code as the page:
+
+    node cli/check.mjs ../almanac/dns
+    node cli/check.mjs ../almanac/dns/freeot.com.zone --ns woz.ns.cloudflare.com
+
+A folder means every `.zone` file in it. It exits with 1 when anything needs a look, or when a file
+looks like it holds a secret (refused before anything about it is asked).
+
+The `--ns` form asks that server for the records instead of Google Public DNS: for checking a new DNS
+company's copy before the domain's name servers are switched to it. The registry isn't asked then,
+since it still names the old company until the switch.
+
+An almanac's workflow checks out this repo and runs it on the almanac's `dns` folder, so a change
+merged here changes every almanac's check.
 
 ## Working on it
 
